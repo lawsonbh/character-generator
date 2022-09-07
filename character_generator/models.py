@@ -1,10 +1,5 @@
 from django.db import models
 
-
-class User(models.Model):
-    ##TODO: A user has many egos
-    pass
-
 class Ego(models.Model):
     ##TODO: An Ego has many morphs and many items
     pass
