@@ -18,14 +18,14 @@ class Ego(models.Model):
     ego_x_rep = models.IntegerField("x-rep")
 
 class Morph(models.Model):
-    egos = models.ManytoManyField(Ego)
+    egos = models.ManyToManyField(Ego)
     morph_name = models.CharField(max_length=50)
     morph_type = models.CharField(max_length=50)
     morph_cost = models.IntegerField()
 
 
 class Item(models.Model):
-    egos = models.ManytoManyField(Ego)
+    egos = models.ManyToManyField(Ego)
     item_name = models.CharField(max_length=100)
     item_complexity_gp = models.CharField(max_length=20)
     item_description = models.CharField(max_length=200)
