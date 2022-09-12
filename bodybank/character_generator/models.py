@@ -1,4 +1,5 @@
 from django.db import models
+from django.forms import ModelForm
 
 class Ego(models.Model):
     name = models.CharField(max_length=50)
@@ -20,3 +21,4 @@ class Item(models.Model):
     name = models.CharField(max_length=100)
     complexity_gp = models.CharField(max_length=20)
     description = models.CharField(max_length=200)
+
