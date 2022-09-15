@@ -11,6 +11,9 @@ class Ego(models.Model):
     wil = models.IntegerField("Willpower (WIL)")
     morph = models.ForeignKey("Morph",null=True,on_delete=models.CASCADE)
     items = models.ManyToManyField("Item")
+    
+    def __str__(self):
+        return self.name
 
 class Morph(models.Model):
     name = models.CharField(max_length=50)

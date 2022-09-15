@@ -1,5 +1,5 @@
-from django.http import HttpResponse
-from django.shortcuts import render
+from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import render, redirect
 from .forms import EgoForm
 
 def index(request):
@@ -9,9 +9,13 @@ def get_ego(request):
     if request.method == 'POST':
         form = EgoForm(request.POST)
         if form.is_valid():
-            return HttpResponseRedirect('/thanks/')
-
+            form.save()
+            return redirect('thanks')
+            
     else:
         form = EgoForm()
 
     return render(request, 'ego.html', {'form': form})
+
+def say_thanks(request):
+    return render(request, 'thanks.html')
