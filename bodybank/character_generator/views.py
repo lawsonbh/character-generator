@@ -9,7 +9,9 @@ def get_ego(request):
     if request.method == 'POST':
         form = EgoForm(request.POST)
         if form.is_valid():
-            form.save()
+            ego = form.save(commit=False)
+            ego.user = request.user
+            ego.save()
             return redirect('thanks')
             
     else:

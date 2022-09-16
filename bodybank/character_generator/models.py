@@ -1,5 +1,6 @@
 from django.db import models
 from django.forms import ModelForm
+from django.conf import settings
 
 class Ego(models.Model):
     name = models.CharField(max_length=50)
@@ -11,7 +12,8 @@ class Ego(models.Model):
     wil = models.IntegerField("Willpower (WIL)")
     morph = models.ForeignKey("Morph",null=True,on_delete=models.CASCADE)
     items = models.ManyToManyField("Item")
-    
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+
     def __str__(self):
         return self.name
 
