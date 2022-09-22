@@ -30,3 +30,8 @@ class EgoUpdateView(UpdateView):
     model = Ego
     fields = ['cog','inte','ref','sav','som','wil','morph','items','user']
     template_name_suffix = '_update_form'
+
+    def get_queryset(self):
+        # Override default query set to return only active user
+        queryset = super().get_queryset()
+        return queryset.filter(owner=self.request.user)
