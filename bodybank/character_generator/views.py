@@ -1,6 +1,8 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
+from django.views.generic.edit import UpdateView
 from .forms import EgoForm
+from .models import Ego
 from django.contrib.auth.decorators import login_required
 
 def index(request):
@@ -23,3 +25,8 @@ def get_ego(request):
 
 def say_thanks(request):
     return render(request, 'thanks.html')
+
+class EgoUpdateView(UpdateView):
+    model = Ego
+    fields = ['cog','inte','ref','sav','som','wil','morph','items','user']
+    template_name_suffix = '_update_form'
