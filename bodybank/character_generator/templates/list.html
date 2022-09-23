@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}My egos{% endblock %}
+
+{% block content %}
+  <h1>My egos</h1>
+  <div class="module">
+    {% for ego in egos %}
+      <div class="ego-info">
+        <h3>{{ ego.name }}</h3>
+        <p>
+          <a href="{% url "ego_edit" ego.id %}">Edit</a>
+          <a href="{% url "ego_delete" ego.id %}">Delete</a>
+        </p>
+      </div>
+    {% empty %}
+      <p>You haven't created any egos yet.</p>
+    {% endfor %}
+    <p>
+      <a href="{% url "ego_create" %}" class="button">Create new ego</a>
+    </p>
+  </div>
+{% endblock %}
