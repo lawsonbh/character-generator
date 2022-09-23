@@ -3,11 +3,11 @@
 {% block title %}Delete ego{% endblock %}
 
 {% block content %}
-  <h1>Delete ego "{{ object.title }}"</h1>
+  <h1>Delete ego "{{ ego.name }}"</h1>
   <div class="module">
     <form action="" method="post">
       {% csrf_token %}
-      <p>Are you sure you want to delete "{{ object }}"?</p>
+      <p>Are you sure you want to delete "{{ ego }}"?</p>
       <input type="submit" value="Confirm">
     </form>
   </div>
