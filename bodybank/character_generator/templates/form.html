@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}
+  {% if ego %}
+    Edit ego "{{ ego.name }}"
+  {% else %}
+    Create a new ego
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+  <h1>
+    {% if ego %}
+      Edit ego "{{ ego.name }}"
+    {% else %}
+      Create a new ego
+    {% endif %}
+  </h1>
+  <div class="module">
+    <h2>Ego info</h2>
+    <form method="post">
+      {{ form.as_p }}
+      {% csrf_token %}
+      <p><input type="submit" value="Save ego"></p>
+    </form>
+  </div>
+{% endblock %}
