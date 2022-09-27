@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load bootstrap5 %}
 
 {% block title %}
   {% if ego %}
@@ -19,7 +20,7 @@
   <div class="module">
     <h2>Ego info</h2>
     <form method="post">
-      {{ form.as_p }}
+      {% bootstrap_form form %}
       {% csrf_token %}
       <p><input type="submit" value="Save ego"></p>
     </form>
