@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load bootstrap5 %}
 
 {% block title %}Delete ego{% endblock %}
 
@@ -7,6 +8,7 @@
   <div class="module">
     <form action="" method="post">
       {% csrf_token %}
+      {% bootstrap_form form %}
       <p>Are you sure you want to delete "{{ ego }}"?</p>
       <input type="submit" value="Confirm">
     </form>

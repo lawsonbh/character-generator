@@ -32,6 +32,7 @@ ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 # Application definition
 
 INSTALLED_APPS = [
+    'bootstrap5',
     'character_generator.apps.CharacterGeneratorConfig',
     'django.contrib.admin',
     'django.contrib.auth',
