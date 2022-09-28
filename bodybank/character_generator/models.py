@@ -19,8 +19,19 @@ class Ego(models.Model):
 
 class Morph(models.Model):
     name = models.CharField(max_length=50)
-    mtype = models.CharField(max_length=50)
+    mtype = models.CharField("Morph Type",max_length=50)
     cost = models.IntegerField()
+    avail = models.IntegerField("Availability")
+    wt = models.IntegerField("Wound Threshold")
+    dur = models.IntegerField("Durability")
+    dr = models.IntegerField("Death Rating")
+    ins = models.IntegerField("Insight")
+    mox = models.IntegerField("Moxie")
+    vig = models.IntegerField("Vigor")
+    flex = models.IntegerField()
+    movtype = models.CharField("Movement System",max_length=20)
+    mov_base = models.IntegerField("Movement Base Rate")
+    mov_full = models.IntegerField("Movement Full Rate")
 
 class Item(models.Model):
     name = models.CharField(max_length=100)
