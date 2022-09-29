@@ -9,4 +9,5 @@ urlpatterns = [
         path('create_ego/', views.get_ego, name='ego_create'),
         path('<pk>/edit/', views.update_ego, name='ego_edit'),
         path('<pk>/delete/', views.ego_delete, name='ego_delete'),
+        path('list_morphs/', views.list_morphs, name='list_morphs')
 ]

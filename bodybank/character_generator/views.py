@@ -5,7 +5,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.contrib import messages
 from .forms import EgoForm
-from .models import Ego
+from .models import Ego, Morph
 from django.contrib.auth.decorators import login_required
 
 
@@ -42,7 +42,7 @@ def update_ego(request, pk):
 @login_required
 def list_user_egos(request):
     egos = Ego.objects.all()
-    return render(request, "list.html", {"egos": egos})
+    return render(request, 'ego_list.html', {'egos':egos})
 
 
 @login_required
@@ -55,6 +55,11 @@ def ego_delete(request, pk):
         return redirect("manage_egos_list")
 
     return render(request, "delete.html", {"ego": ego})
+
+
+def list_morphs(request):
+    morphs = Morph.objects.all()
+    return render(request, 'morph_list.html',{'morphs':morphs})
 
 
 def say_thanks(request):
