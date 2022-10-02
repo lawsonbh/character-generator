@@ -9,19 +9,15 @@ from .models import Ego, Morph
 from django.contrib.auth.decorators import login_required
 
 
-def index(request):
-    return HttpResponse("Welcome to the Body Bank!")
-
-
 @login_required
-def get_ego(request):
+def create_ego(request):
     if request.method == "POST":
         form = EgoForm(request.POST)
         if form.is_valid():
             ego = form.save(commit=False)
             ego.user = request.user
             ego.save()
-            return redirect("manage_egos_list")
+            return redirect("list_egos")
     else:
         form = EgoForm()
 
@@ -29,13 +25,13 @@ def get_ego(request):
 
 
 @login_required
-def update_ego(request, pk):
+def edit_ego(request, pk):
     ego = get_object_or_404(Ego, pk=pk)
     form = EgoForm(request.POST or None, instance=ego)
     if form.is_valid():
         form.save()
         messages.success(request, "Updated Ego")
-        return redirect("manage_egos_list")
+        return redirect("list_egos")
     return render(request, "form.html", {"form": form})
 
 
@@ -46,13 +42,13 @@ def list_user_egos(request):
 
 
 @login_required
-def ego_delete(request, pk):
+def delete_ego(request, pk):
     ego = get_object_or_404(Ego, pk=pk)
 
     if request.method == "POST":
         ego.delete()
         messages.success(request, "Deleted Ego")
-        return redirect("manage_egos_list")
+        return redirect("list_egos")
 
     return render(request, "delete.html", {"ego": ego})
 
