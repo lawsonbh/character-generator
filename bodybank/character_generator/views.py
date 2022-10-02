@@ -8,23 +8,25 @@ from .forms import EgoForm
 from .models import Ego, Morph
 from django.contrib.auth.decorators import login_required
 
+
 def index(request):
     return HttpResponse("Welcome to the Body Bank!")
 
+
 @login_required
 def get_ego(request):
-    if request.method == 'POST':
+    if request.method == "POST":
         form = EgoForm(request.POST)
         if form.is_valid():
             ego = form.save(commit=False)
             ego.user = request.user
             ego.save()
-            return redirect('manage_egos_list')
-            
+            return redirect("manage_egos_list")
     else:
         form = EgoForm()
 
-    return render(request, 'ego.html', {'form': form})
+    return render(request, "ego.html", {"form": form})
+
 
 @login_required
 def update_ego(request, pk):
@@ -32,29 +34,33 @@ def update_ego(request, pk):
     form = EgoForm(request.POST or None, instance=ego)
     if form.is_valid():
         form.save()
-        messages.success(request, 'Updated Ego')
-        return redirect('manage_egos_list')
-    return render(request, 'form.html', {'form':form})
+        messages.success(request, "Updated Ego")
+        return redirect("manage_egos_list")
+    return render(request, "form.html", {"form": form})
+
 
 @login_required
 def list_user_egos(request):
     egos = Ego.objects.all()
     return render(request, 'ego_list.html', {'egos':egos})
 
+
 @login_required
 def ego_delete(request, pk):
     ego = get_object_or_404(Ego, pk=pk)
 
-    if request.method == 'POST':
+    if request.method == "POST":
         ego.delete()
-        messages.success(request, 'Deleted Ego')
-        return redirect('manage_egos_list')
-    
-    return render(request, 'delete.html', {'ego':ego})
+        messages.success(request, "Deleted Ego")
+        return redirect("manage_egos_list")
+
+    return render(request, "delete.html", {"ego": ego})
+
 
 def list_morphs(request):
     morphs = Morph.objects.all()
     return render(request, 'morph_list.html',{'morphs':morphs})
 
+
 def say_thanks(request):
-    return render(request, 'thanks.html')
+    return render(request, "thanks.html")

@@ -17,6 +17,16 @@ class Ego(models.Model):
     def __str__(self):
         return self.name
 
+
+class Movement(models.Model):
+    name = models.CharField(max_length=128)
+    base = models.IntegerField(default=0)
+    full = models.IntegerField(default=0)
+
+    def __str__(self):
+        return self.name
+
+
 class Morph(models.Model):
     name = models.CharField(max_length=50,null=True)
     desc = models.TextField("Morph Description",default="")
@@ -30,9 +40,7 @@ class Morph(models.Model):
     mox = models.IntegerField("Moxie",default=0)
     vig = models.IntegerField("Vigor",default=0)
     flex = models.IntegerField(default=0)
-    movtype = models.CharField("Movement System",max_length=20,default="Walker")
-    mov_base = models.IntegerField("Movement Base Rate",default=4)
-    mov_full = models.IntegerField("Movement Full Rate",default=20)
+    movtype = models.ManyToManyField(Movement, related_name='movement_systems')
 
     def __str__(self):
         return self.name
@@ -41,4 +49,3 @@ class Item(models.Model):
     name = models.CharField(max_length=100)
     complexity_gp = models.CharField(max_length=20)
     description = models.CharField(max_length=200)
-
