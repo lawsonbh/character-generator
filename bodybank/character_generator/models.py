@@ -49,3 +49,9 @@ class Item(models.Model):
     name = models.CharField(max_length=100)
     complexity_gp = models.CharField(max_length=20)
     description = models.CharField(max_length=200)
+
+
+class Ego2Morph(models.Model):
+    creation_timestamp = models.DateTimeField(auto_now_add=True)
+    ego = models.ForeignKey(Ego.name)
+    morph = models.ForeignKey(Morph.name)
