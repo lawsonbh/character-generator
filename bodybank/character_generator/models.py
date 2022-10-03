@@ -53,5 +53,5 @@ class Item(models.Model):
 
 class Ego2Morph(models.Model):
     creation_timestamp = models.DateTimeField(auto_now_add=True)
-    ego = models.ForeignKey(Ego.name)
-    morph = models.ForeignKey(Morph.name)
+    ego = models.ForeignKey(Ego.name, on_delete=models.CASCADE)
+    morph = models.ForeignKey(Morph.name, null=True, on_delete=models.deletion.SET_NULL)
