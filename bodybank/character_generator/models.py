@@ -12,6 +12,7 @@ class Ego(models.Model):
     wil = models.IntegerField("Willpower (WIL)")
     items = models.ManyToManyField("Item")
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    background = models.ForeignKey("Background",null=True, blank=True)
 
     def __str__(self):
         return self.name
@@ -54,3 +55,15 @@ class Ego2Morph(models.Model):
     creation_timestamp = models.DateTimeField(auto_now_add=True)
     ego = models.ForeignKey(Ego, related_name='ego_history', on_delete=models.CASCADE)
     morph = models.ForeignKey(Morph, related_name='morph_history', null=True, on_delete=models.deletion.SET_NULL)
+
+class Background(models.Model):
+    pass
+
+class Skill(models.Model):
+    pass
+
+
+class Background2Skills(models.Model):
+    background = models.ForeignKey(Background, related_name='background_to_skill', on_delete=models.CASCADE)
+    skills = models.ForeignKey(Skill, related_name='skill_to_background', on_delete=models.CASCADE)
+    modifier = models.PositiveIntegerField(default=0)
