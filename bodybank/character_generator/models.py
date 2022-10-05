@@ -19,7 +19,25 @@ class Ego(models.Model):
 
 
 class Movement(models.Model):
-    name = models.CharField(max_length=128)
+    WALKER = "Walker"
+    WINGED = "Winged"
+    SWIM = "Swim"
+    THRUST_VECTOR = "Thrust Vector"
+    HOPPER = "Hopper"
+    ROTOR = "Rotor"
+    IONIC = "Ionic"
+    WHEELED = "Wheeled"
+    MOVEMENT_NAME_CHOICES = [
+        (WALKER, 'Walker'),
+        (WINGED, 'Winged'),
+        (SWIM, 'Swim'),
+        (THRUST_VECTOR, 'Thrust Vector'),
+        (HOPPER, 'Hopper'),
+        (ROTOR, 'Rotor'),
+        (IONIC, 'Ionic'),
+        (WHEELED, 'Wheeled')
+    ]
+    name = models.CharField("Movement Name", max_length=30, choices=MOVEMENT_NAME_CHOICES, default=WALKER)
     base = models.IntegerField(default=0)
     full = models.IntegerField(default=0)
 
@@ -30,7 +48,19 @@ class Movement(models.Model):
 class Morph(models.Model):
     name = models.CharField(max_length=50,null=True)
     desc = models.TextField("Morph Description",default="")
-    mtype = models.CharField("Morph Type",max_length=50,default="")
+    COMMON = "Common"
+    POD = "Pod"
+    UPLIFT = "Uplift"
+    SYNTHMORPH = "Synth"
+    INFOMORPH = "Info"
+    MORPH_TYPE_CHOICES = [
+        (COMMON, 'Common'),
+        (POD, 'Pod'),
+        (UPLIFT, 'Uplift'),
+        (SYNTHMORPH, 'Synth Morph'),
+        (INFOMORPH, 'Info Morph')
+    ]
+    mtype = models.CharField("Morph Type",max_length=30,choices=MORPH_TYPE_CHOICES,default=COMMON)
     cost = models.IntegerField(default=0)
     avail = models.IntegerField("Availability",default=0)
     wt = models.IntegerField("Wound Threshold",default=0)
