@@ -9,7 +9,7 @@
       <form action="" method="post">
         {% csrf_token %}
         <p>Are you sure you want to delete "{{ ego }}"?</p>
-        <input type="button" class="btn btn-danger" value="Confirm">
+        <input type="submit" class="btn btn-danger" value="Confirm">
         <a href="{% url "list_egos" %}" class="btn btn-light">Cancel</a>
       </form>
     </div>
