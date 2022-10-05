@@ -1,19 +1,23 @@
 {% extends "base.html" %}
 
+{% load bootstrap5 %}
+
 {% block title %}Morphs{% endblock %}
 
 {% block content %}
-  <h1>Morphs</h1>
-  <div class="module">
-    {% for morph in morphs %}
-      <div class="morph-info">
-	<h3>{{ morph.name }} </h3>
-        <p>
-	  {{ morph.desc }}
-        </p>
-      </div>
-    {% empty %}
-      <p>Where are all the morphs?</p>
-    {% endfor %}
+  <div class="container">
+    <h1>Morphs</h1>
+    <div class="module">
+      {% for morph in morphs %}
+        <div class="morph-info">
+    <h3>{{ morph.name }} </h3>
+          <p>
+      {{ morph.desc }}
+          </p>
+        </div>
+      {% empty %}
+        <p>Where are all the morphs?</p>
+      {% endfor %}
+    </div>
   </div>
 {% endblock %}
