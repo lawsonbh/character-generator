@@ -3,13 +3,15 @@
 {% block title %}Delete ego{% endblock %}
 
 {% block content %}
-  <h1>Delete ego "{{ ego.name }}"</h1>
-  <div class="module">
-    <form action="" method="post">
-      {% csrf_token %}
-      <p>Are you sure you want to delete "{{ ego }}"?</p>
-      <input type="button" class="btn btn-danger" value="Confirm">
-      <a href="{% url "list_egos" %}" class="btn btn-light">Cancel</a>
-    </form>
+  <div class="container">
+    <h1>Delete ego "{{ ego.name }}"</h1>
+    <div class="module">
+      <form action="" method="post">
+        {% csrf_token %}
+        <p>Are you sure you want to delete "{{ ego }}"?</p>
+        <input type="button" class="btn btn-danger" value="Confirm">
+        <a href="{% url "list_egos" %}" class="btn btn-light">Cancel</a>
+      </form>
+    </div>
   </div>
 {% endblock %}

@@ -2,9 +2,11 @@
 {% load bootstrap5 %}
 
 {% block content %}
-  <form action="" method="post">
-    {% csrf_token %}
-    {% bootstrap_form form %}
-    <input type="submit" value="Submit">
-  </form>
+  <div class="container">
+    <form action="" method="post">
+      {% csrf_token %}
+      {% bootstrap_form form %}
+      <input type="submit" value="Submit">
+    </form>
+  </div>
 {% endblock %}

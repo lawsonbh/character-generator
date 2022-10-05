@@ -10,19 +10,21 @@
 {% endblock %}
 
 {% block content %}
-  <h1>
-    {% if ego %}
-      Edit ego "{{ ego.name }}"
-    {% else %}
-      Create a new ego
-    {% endif %}
-  </h1>
-  <div class="module">
-    <h2>Ego info</h2>
-    <form method="post">
-      {% bootstrap_form form %}
-      {% csrf_token %}
-      <p><input type="submit" value="Save ego"></p>
-    </form>
+  <div class="container">
+    <h1>
+      {% if ego %}
+        Edit ego "{{ ego.name }}"
+      {% else %}
+        Create a new ego
+      {% endif %}
+    </h1>
+    <div class="module">
+      <h2>Ego info</h2>
+      <form method="post">
+        {% bootstrap_form form %}
+        {% csrf_token %}
+        <p><input type="submit" value="Save ego"></p>
+      </form>
+    </div>
   </div>
 {% endblock %}

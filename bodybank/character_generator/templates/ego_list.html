@@ -3,21 +3,23 @@
 {% block title %}My egos{% endblock %}
 
 {% block content %}
-  <h1>My egos</h1>
-  <div class="module">
-    {% for ego in egos %}
-      <div class="ego-info">
-        <h3>{{ ego.name }}</h3>
-        <p>
-          <a href="{% url "edit_ego" ego.id %}">Edit</a>
-          <a href="{% url "delete_ego" ego.id %}">Delete</a>
-        </p>
-      </div>
-    {% empty %}
-      <p>You haven't created any egos yet.</p>
-    {% endfor %}
-    <p>
-      <a href="{% url "create_ego" %}" class="button">Create new ego</a>
-    </p>
+  <div class="container">
+    <h1>My Egos</h1>
+    <div class="module">
+      {% for ego in egos %}
+        <div class="ego-info">
+          <h3>{{ ego.name }}</h3>
+          <p>
+            <a href="{% url "edit_ego" ego.id %}">Edit</a>
+            <a href="{% url "delete_ego" ego.id %}">Delete</a>
+          </p>
+        </div>
+      {% empty %}
+        <p>You haven't created any egos yet.</p>
+      {% endfor %}
+      <p>
+        <a href="{% url "create_ego" %}" class="button">Create new ego</a>
+      </p>
+    </div>
   </div>
 {% endblock %}
