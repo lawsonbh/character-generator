@@ -10,7 +10,7 @@ class Ego(models.Model):
     sav = models.IntegerField("Savy (SAV)")
     som = models.IntegerField("Somatics (SOM)")
     wil = models.IntegerField("Willpower (WIL)")
-    morph = models.ForeignKey("Morph",null=True,on_delete=models.CASCADE)
+    morph = models.ForeignKey("Ego2Morph",null=True,on_delete=models.CASCADE)
     items = models.ManyToManyField("Item")
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
@@ -53,5 +53,5 @@ class Item(models.Model):
 
 class Ego2Morph(models.Model):
     creation_timestamp = models.DateTimeField(auto_now_add=True)
-    ego = models.ForeignKey(Ego.name, on_delete=models.CASCADE)
-    morph = models.ForeignKey(Morph.name, null=True, on_delete=models.deletion.SET_NULL)
+    ego_from = models.ForeignKey("Ego", related_name="related_from_set",on_delete=models.CASCADE)
+    morph_to = models.ForeignKey("Morph", related_name="related_to_set",null=True, on_delete=models.deletion.SET_NULL)
