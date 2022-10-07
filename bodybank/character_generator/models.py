@@ -1,3 +1,4 @@
+from unicodedata import category
 from django.db import models
 from django.forms import ModelForm
 from django.conf import settings
@@ -76,8 +77,18 @@ class Morph(models.Model):
 
 class Item(models.Model):
     name = models.CharField(max_length=100)
+    COMMON_TECH = "Common Tech & Ware"
+    MISSION_GEAR = "Mission Gear"
+    ITEM_TYPE_CHOICES = [
+        (COMMON_TECH, COMMON_TECH),
+        (MISSION_GEAR, MISSION_GEAR)
+    ]
+    itype = models.CharField("Item Type", max_length=30, choices=ITEM_TYPE_CHOICES,default=COMMON_TECH)
     complexity_gp = models.CharField(max_length=20)
-    description = models.CharField(max_length=200)
+    desc = models.TextField("Description", default="")
+
+    def __str__(self):
+        return self.name
 
 
 class Ego2Morph(models.Model):
