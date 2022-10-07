@@ -85,11 +85,15 @@ class Ego2Morph(models.Model):
     ego = models.ForeignKey(Ego, related_name='ego_history', on_delete=models.CASCADE)
     morph = models.ForeignKey(Morph, related_name='morph_history', null=True, on_delete=models.deletion.SET_NULL)
 
+
 class Background(models.Model):
-    pass
+    name = models.CharField(max_length=100)
+    desc = models.TextField("Description", default="")
+
 
 class Skill(models.Model):
-    pass
+    name = models.CharField(max_length=100)
+    desc = models.TextField("Description", default="")
 
 
 class Background2Skills(models.Model):
