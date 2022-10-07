@@ -89,14 +89,22 @@ class Ego2Morph(models.Model):
 class Background(models.Model):
     name = models.CharField(max_length=100)
     desc = models.TextField("Description", default="")
+    
+    def __str__(self):
+        return self.name
 
 
 class Skill(models.Model):
     name = models.CharField(max_length=100)
     desc = models.TextField("Description", default="")
 
+    def __str__(self):
+        return self.name
 
 class Background2Skills(models.Model):
     background = models.ForeignKey(Background, related_name='background_to_skill', on_delete=models.CASCADE)
     skills = models.ForeignKey(Skill, related_name='skill_to_background', on_delete=models.CASCADE)
     modifier = models.PositiveIntegerField(default=0)
+
+    def __str__(self):
+        return (' '.join([str(self.background), str(self.skills), str(self.modifier)]))
