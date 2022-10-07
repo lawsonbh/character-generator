@@ -12,14 +12,31 @@ class Ego(models.Model):
     wil = models.IntegerField("Willpower (WIL)")
     items = models.ManyToManyField("Item")
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    background = models.ForeignKey("Background",null=True, blank=True)
 
     def __str__(self):
         return self.name
 
 
 class Movement(models.Model):
-    name = models.CharField(max_length=128)
+    WALKER = "Walker"
+    WINGED = "Winged"
+    SWIM = "Swim"
+    THRUST_VECTOR = "Thrust Vector"
+    HOPPER = "Hopper"
+    ROTOR = "Rotor"
+    IONIC = "Ionic"
+    WHEELED = "Wheeled"
+    MOVEMENT_NAME_CHOICES = [
+        (WALKER, WALKER),
+        (WINGED, WINGED),
+        (SWIM, SWIM),
+        (THRUST_VECTOR, THRUST_VECTOR),
+        (HOPPER, HOPPER),
+        (ROTOR, ROTOR),
+        (IONIC, IONIC),
+        (WHEELED, WHEELED)
+    ]
+    name = models.CharField("Movement Name", max_length=30, choices=MOVEMENT_NAME_CHOICES, default=WALKER)
     base = models.IntegerField(default=0)
     full = models.IntegerField(default=0)
 
@@ -30,7 +47,19 @@ class Movement(models.Model):
 class Morph(models.Model):
     name = models.CharField(max_length=50,null=True)
     desc = models.TextField("Morph Description",default="")
-    mtype = models.CharField("Morph Type",max_length=50,default="")
+    COMMON = "Common"
+    POD = "Pod"
+    UPLIFT = "Uplift"
+    SYNTHMORPH = "Synth"
+    INFOMORPH = "Info"
+    MORPH_TYPE_CHOICES = [
+        (COMMON, COMMON),
+        (POD, POD),
+        (UPLIFT, UPLIFT),
+        (SYNTHMORPH, SYNTHMORPH),
+        (INFOMORPH, INFOMORPH)
+    ]
+    mtype = models.CharField("Morph Type",max_length=30,choices=MORPH_TYPE_CHOICES,default=COMMON)
     cost = models.IntegerField(default=0)
     avail = models.IntegerField("Availability",default=0)
     wt = models.IntegerField("Wound Threshold",default=0)
