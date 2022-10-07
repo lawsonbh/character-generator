@@ -27,14 +27,14 @@ class Movement(models.Model):
     IONIC = "Ionic"
     WHEELED = "Wheeled"
     MOVEMENT_NAME_CHOICES = [
-        (WALKER, 'Walker'),
-        (WINGED, 'Winged'),
-        (SWIM, 'Swim'),
-        (THRUST_VECTOR, 'Thrust Vector'),
-        (HOPPER, 'Hopper'),
-        (ROTOR, 'Rotor'),
-        (IONIC, 'Ionic'),
-        (WHEELED, 'Wheeled')
+        (WALKER, WALKER),
+        (WINGED, WINGED),
+        (SWIM, SWIM),
+        (THRUST_VECTOR, THRUST_VECTOR),
+        (HOPPER, HOPPER),
+        (ROTOR, ROTOR),
+        (IONIC, IONIC),
+        (WHEELED, WHEELED)
     ]
     name = models.CharField("Movement Name", max_length=30, choices=MOVEMENT_NAME_CHOICES, default=WALKER)
     base = models.IntegerField(default=0)
@@ -53,11 +53,11 @@ class Morph(models.Model):
     SYNTHMORPH = "Synth"
     INFOMORPH = "Info"
     MORPH_TYPE_CHOICES = [
-        (COMMON, 'Common'),
-        (POD, 'Pod'),
-        (UPLIFT, 'Uplift'),
-        (SYNTHMORPH, 'Synth Morph'),
-        (INFOMORPH, 'Info Morph')
+        (COMMON, COMMON),
+        (POD, POD),
+        (UPLIFT, UPLIFT),
+        (SYNTHMORPH, SYNTHMORPH),
+        (INFOMORPH, INFOMORPH)
     ]
     mtype = models.CharField("Morph Type",max_length=30,choices=MORPH_TYPE_CHOICES,default=COMMON)
     cost = models.IntegerField(default=0)
@@ -84,3 +84,27 @@ class Ego2Morph(models.Model):
     creation_timestamp = models.DateTimeField(auto_now_add=True)
     ego = models.ForeignKey(Ego, related_name='ego_history', on_delete=models.CASCADE)
     morph = models.ForeignKey(Morph, related_name='morph_history', null=True, on_delete=models.deletion.SET_NULL)
+
+
+class Background(models.Model):
+    name = models.CharField(max_length=100)
+    desc = models.TextField("Description", default="")
+    
+    def __str__(self):
+        return self.name
+
+
+class Skill(models.Model):
+    name = models.CharField(max_length=100)
+    desc = models.TextField("Description", default="")
+
+    def __str__(self):
+        return self.name
+
+class Background2Skills(models.Model):
+    background = models.ForeignKey(Background, related_name='background_to_skill', on_delete=models.CASCADE)
+    skills = models.ForeignKey(Skill, related_name='skill_to_background', on_delete=models.CASCADE)
+    modifier = models.PositiveIntegerField(default=0)
+
+    def __str__(self):
+        return (' '.join([str(self.background), str(self.skills), str(self.modifier)]))
