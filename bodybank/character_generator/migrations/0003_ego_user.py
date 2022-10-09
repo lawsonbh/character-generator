@@ -9,14 +9,18 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('character_generator', '0002_rename_ego_cog_apt_ego_cog_and_more'),
+        ("character_generator", "0002_rename_ego_cog_apt_ego_cog_and_more"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='ego',
-            name='user',
-            field=models.ForeignKey(default=999, on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL),
+            model_name="ego",
+            name="user",
+            field=models.ForeignKey(
+                default=999,
+                on_delete=django.db.models.deletion.CASCADE,
+                to=settings.AUTH_USER_MODEL,
+            ),
             preserve_default=False,
         ),
     ]

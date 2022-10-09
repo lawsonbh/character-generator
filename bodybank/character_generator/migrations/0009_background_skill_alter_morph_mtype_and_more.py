@@ -7,43 +7,109 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('character_generator', '0008_remove_ego_morph_remove_ego2morph_ego_from_and_more'),
+        (
+            "character_generator",
+            "0008_remove_ego_morph_remove_ego2morph_ego_from_and_more",
+        ),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Background',
+            name="Background",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=100)),
-                ('desc', models.TextField(default='', verbose_name='Description')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=100)),
+                ("desc", models.TextField(default="", verbose_name="Description")),
             ],
         ),
         migrations.CreateModel(
-            name='Skill',
+            name="Skill",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=100)),
-                ('desc', models.TextField(default='', verbose_name='Description')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=100)),
+                ("desc", models.TextField(default="", verbose_name="Description")),
             ],
         ),
         migrations.AlterField(
-            model_name='morph',
-            name='mtype',
-            field=models.CharField(choices=[('Common', 'Common'), ('Pod', 'Pod'), ('Uplift', 'Uplift'), ('Synth', 'Synth'), ('Info', 'Info')], default='Common', max_length=30, verbose_name='Morph Type'),
+            model_name="morph",
+            name="mtype",
+            field=models.CharField(
+                choices=[
+                    ("Common", "Common"),
+                    ("Pod", "Pod"),
+                    ("Uplift", "Uplift"),
+                    ("Synth", "Synth"),
+                    ("Info", "Info"),
+                ],
+                default="Common",
+                max_length=30,
+                verbose_name="Morph Type",
+            ),
         ),
         migrations.AlterField(
-            model_name='movement',
-            name='name',
-            field=models.CharField(choices=[('Walker', 'Walker'), ('Winged', 'Winged'), ('Swim', 'Swim'), ('Thrust Vector', 'Thrust Vector'), ('Hopper', 'Hopper'), ('Rotor', 'Rotor'), ('Ionic', 'Ionic'), ('Wheeled', 'Wheeled')], default='Walker', max_length=30, verbose_name='Movement Name'),
+            model_name="movement",
+            name="name",
+            field=models.CharField(
+                choices=[
+                    ("Walker", "Walker"),
+                    ("Winged", "Winged"),
+                    ("Swim", "Swim"),
+                    ("Thrust Vector", "Thrust Vector"),
+                    ("Hopper", "Hopper"),
+                    ("Rotor", "Rotor"),
+                    ("Ionic", "Ionic"),
+                    ("Wheeled", "Wheeled"),
+                ],
+                default="Walker",
+                max_length=30,
+                verbose_name="Movement Name",
+            ),
         ),
         migrations.CreateModel(
-            name='Background2Skills',
+            name="Background2Skills",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('modifier', models.PositiveIntegerField(default=0)),
-                ('background', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='background_to_skill', to='character_generator.background')),
-                ('skills', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='skill_to_background', to='character_generator.skill')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("modifier", models.PositiveIntegerField(default=0)),
+                (
+                    "background",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="background_to_skill",
+                        to="character_generator.background",
+                    ),
+                ),
+                (
+                    "skills",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="skill_to_background",
+                        to="character_generator.skill",
+                    ),
+                ),
             ],
         ),
     ]

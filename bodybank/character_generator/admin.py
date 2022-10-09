@@ -5,20 +5,26 @@ from .models import Ego, Movement, Morph, Background, Skill, Background2Skills
 class EgoAdmin(admin.ModelAdmin):
     pass
 
+
 class MovementAdmin(admin.ModelAdmin):
     pass
+
 
 class MorphAdmin(admin.ModelAdmin):
     pass
 
+
 class BackgroundAdmin(admin.ModelAdmin):
     pass
+
 
 class SkillAdmin(admin.ModelAdmin):
     pass
 
+
 class Background2SkillsAdmin(admin.ModelAdmin):
     pass
+
 
 admin.site.register(Ego, EgoAdmin)
 admin.site.register(Movement, MovementAdmin)
