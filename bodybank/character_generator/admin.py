@@ -1,5 +1,15 @@
 from django.contrib import admin
-from .models import Ego, Movement, Morph, Background, Skill, Background2Skills, Career, Career2Skills, Item
+from .models import (
+    Ego,
+    Movement,
+    Morph,
+    Background,
+    Skill,
+    Background2Skills,
+    Career,
+    Career2Skills,
+    Item,
+)
 
 
 class EgoAdmin(admin.ModelAdmin):
@@ -25,14 +35,19 @@ class SkillAdmin(admin.ModelAdmin):
 class Background2SkillsAdmin(admin.ModelAdmin):
     pass
 
+
 class CareerAdmin(admin.ModelAdmin):
     pass
+
 
 class Career2SkillsAdmin(admin.ModelAdmin):
     pass
 
+
+@admin.register(Item)
 class ItemAdmin(admin.ModelAdmin):
-    pass
+    list_display = ("name", "itype", "complexity_gp", "desc")
+
 
 admin.site.register(Ego, EgoAdmin)
 admin.site.register(Movement, MovementAdmin)
@@ -42,4 +57,3 @@ admin.site.register(Skill, SkillAdmin)
 admin.site.register(Background2Skills, Background2SkillsAdmin)
 admin.site.register(Career, CareerAdmin)
 admin.site.register(Career2Skills, Career2SkillsAdmin)
-admin.site.register(Item, ItemAdmin)
