@@ -1,21 +1,26 @@
 from django.contrib import admin
-from .models import Ego, Movement, Morph, Background, Skill, Background2Skills, Career, Career2Skills
+from .models import Ego, Movement, Morph, Background, Skill, Background2Skills, Career, Career2Skills, Item
 
 
 class EgoAdmin(admin.ModelAdmin):
     pass
 
+
 class MovementAdmin(admin.ModelAdmin):
     pass
+
 
 class MorphAdmin(admin.ModelAdmin):
     pass
 
+
 class BackgroundAdmin(admin.ModelAdmin):
     pass
 
+
 class SkillAdmin(admin.ModelAdmin):
     pass
+
 
 class Background2SkillsAdmin(admin.ModelAdmin):
     pass
@@ -26,6 +31,9 @@ class CareerAdmin(admin.ModelAdmin):
 class Career2SkillsAdmin(admin.ModelAdmin):
     pass
 
+class ItemAdmin(admin.ModelAdmin):
+    pass
+
 admin.site.register(Ego, EgoAdmin)
 admin.site.register(Movement, MovementAdmin)
 admin.site.register(Morph, MorphAdmin)
@@ -34,3 +42,4 @@ admin.site.register(Skill, SkillAdmin)
 admin.site.register(Background2Skills, Background2SkillsAdmin)
 admin.site.register(Career, CareerAdmin)
 admin.site.register(Career2Skills, Career2SkillsAdmin)
+admin.site.register(Item, ItemAdmin)

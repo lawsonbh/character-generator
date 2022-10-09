@@ -7,31 +7,41 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('character_generator', '0007_ego2morph_alter_ego_morph'),
+        ("character_generator", "0007_ego2morph_alter_ego_morph"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='ego',
-            name='morph',
+            model_name="ego",
+            name="morph",
         ),
         migrations.RemoveField(
-            model_name='ego2morph',
-            name='ego_from',
+            model_name="ego2morph",
+            name="ego_from",
         ),
         migrations.RemoveField(
-            model_name='ego2morph',
-            name='morph_to',
+            model_name="ego2morph",
+            name="morph_to",
         ),
         migrations.AddField(
-            model_name='ego2morph',
-            name='ego',
-            field=models.ForeignKey(default=None, on_delete=django.db.models.deletion.CASCADE, related_name='ego_history', to='character_generator.ego'),
+            model_name="ego2morph",
+            name="ego",
+            field=models.ForeignKey(
+                default=None,
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="ego_history",
+                to="character_generator.ego",
+            ),
             preserve_default=False,
         ),
         migrations.AddField(
-            model_name='ego2morph',
-            name='morph',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='morph_history', to='character_generator.morph'),
+            model_name="ego2morph",
+            name="morph",
+            field=models.ForeignKey(
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                related_name="morph_history",
+                to="character_generator.morph",
+            ),
         ),
     ]

@@ -38,7 +38,7 @@ def edit_ego(request, pk):
 @login_required
 def list_user_egos(request):
     egos = Ego.objects.all()
-    return render(request, 'ego_list.html', {'egos':egos})
+    return render(request, "ego_list.html", {"egos": egos})
 
 
 @login_required
@@ -55,7 +55,7 @@ def delete_ego(request, pk):
 
 def list_morphs(request):
     morphs = Morph.objects.all()
-    return render(request, 'morph_list.html',{'morphs':morphs})
+    return render(request, "morph_list.html", {"morphs": morphs})
 
 
 def say_thanks(request):
