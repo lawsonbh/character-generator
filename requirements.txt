@@ -6,3 +6,4 @@ python-decouple==3.6
 soupsieve==2.3.2.post1
 sqlparse==0.4.2
 pre-commit==2.20.0
+black==22.10.0

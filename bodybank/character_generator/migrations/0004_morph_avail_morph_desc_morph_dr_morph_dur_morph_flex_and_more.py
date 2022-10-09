@@ -6,83 +6,87 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('character_generator', '0003_ego_user'),
+        ("character_generator", "0003_ego_user"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='morph',
-            name='avail',
-            field=models.IntegerField(default=0, verbose_name='Availability'),
+            model_name="morph",
+            name="avail",
+            field=models.IntegerField(default=0, verbose_name="Availability"),
         ),
         migrations.AddField(
-            model_name='morph',
-            name='desc',
-            field=models.TextField(default='', verbose_name='Morph Description'),
+            model_name="morph",
+            name="desc",
+            field=models.TextField(default="", verbose_name="Morph Description"),
         ),
         migrations.AddField(
-            model_name='morph',
-            name='dr',
-            field=models.IntegerField(default=0, verbose_name='Death Rating'),
+            model_name="morph",
+            name="dr",
+            field=models.IntegerField(default=0, verbose_name="Death Rating"),
         ),
         migrations.AddField(
-            model_name='morph',
-            name='dur',
-            field=models.IntegerField(default=0, verbose_name='Durability'),
+            model_name="morph",
+            name="dur",
+            field=models.IntegerField(default=0, verbose_name="Durability"),
         ),
         migrations.AddField(
-            model_name='morph',
-            name='flex',
+            model_name="morph",
+            name="flex",
             field=models.IntegerField(default=0),
         ),
         migrations.AddField(
-            model_name='morph',
-            name='ins',
-            field=models.IntegerField(default=0, verbose_name='Insight'),
+            model_name="morph",
+            name="ins",
+            field=models.IntegerField(default=0, verbose_name="Insight"),
         ),
         migrations.AddField(
-            model_name='morph',
-            name='mov_base',
-            field=models.IntegerField(default=4, verbose_name='Movement Base Rate'),
+            model_name="morph",
+            name="mov_base",
+            field=models.IntegerField(default=4, verbose_name="Movement Base Rate"),
         ),
         migrations.AddField(
-            model_name='morph',
-            name='mov_full',
-            field=models.IntegerField(default=20, verbose_name='Movement Full Rate'),
+            model_name="morph",
+            name="mov_full",
+            field=models.IntegerField(default=20, verbose_name="Movement Full Rate"),
         ),
         migrations.AddField(
-            model_name='morph',
-            name='movtype',
-            field=models.CharField(default='Walker', max_length=20, verbose_name='Movement System'),
+            model_name="morph",
+            name="movtype",
+            field=models.CharField(
+                default="Walker", max_length=20, verbose_name="Movement System"
+            ),
         ),
         migrations.AddField(
-            model_name='morph',
-            name='mox',
-            field=models.IntegerField(default=0, verbose_name='Moxie'),
+            model_name="morph",
+            name="mox",
+            field=models.IntegerField(default=0, verbose_name="Moxie"),
         ),
         migrations.AddField(
-            model_name='morph',
-            name='vig',
-            field=models.IntegerField(default=0, verbose_name='Vigor'),
+            model_name="morph",
+            name="vig",
+            field=models.IntegerField(default=0, verbose_name="Vigor"),
         ),
         migrations.AddField(
-            model_name='morph',
-            name='wt',
-            field=models.IntegerField(default=0, verbose_name='Wound Threshold'),
+            model_name="morph",
+            name="wt",
+            field=models.IntegerField(default=0, verbose_name="Wound Threshold"),
         ),
         migrations.AlterField(
-            model_name='morph',
-            name='cost',
+            model_name="morph",
+            name="cost",
             field=models.IntegerField(default=0),
         ),
         migrations.AlterField(
-            model_name='morph',
-            name='mtype',
-            field=models.CharField(default='', max_length=50, verbose_name='Morph Type'),
+            model_name="morph",
+            name="mtype",
+            field=models.CharField(
+                default="", max_length=50, verbose_name="Morph Type"
+            ),
         ),
         migrations.AlterField(
-            model_name='morph',
-            name='name',
+            model_name="morph",
+            name="name",
             field=models.CharField(max_length=50, null=True),
         ),
     ]

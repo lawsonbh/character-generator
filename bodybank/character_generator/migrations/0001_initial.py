@@ -8,68 +8,117 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Ego',
+            name="Ego",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('ego_name', models.CharField(max_length=50)),
-                ('ego_cog_apt', models.IntegerField(verbose_name='Cognition (COG)')),
-                ('ego_int_apt', models.IntegerField(verbose_name='Intuition (INT)')),
-                ('ego_ref_apt', models.IntegerField(verbose_name='Reflex (REF)')),
-                ('ego_sav_apt', models.IntegerField(verbose_name='Savy (SAV)')),
-                ('ego_som_apt', models.IntegerField(verbose_name='Somatics (SOM)')),
-                ('ego_wil_apt', models.IntegerField(verbose_name='Willpower (WIL)')),
-                ('ego_flex', models.IntegerField(verbose_name='Ego Flex Bonus')),
-                ('ego_a_rep', models.IntegerField(verbose_name='@-rep')),
-                ('ego_c_rep', models.IntegerField(verbose_name='c-rep')),
-                ('ego_f_rep', models.IntegerField(verbose_name='f-rep')),
-                ('ego_g_rep', models.IntegerField(verbose_name='g-rep')),
-                ('ego_i_rep', models.IntegerField(verbose_name='i-rep')),
-                ('ego_r_rep', models.IntegerField(verbose_name='r-rep')),
-                ('ego_x_rep', models.IntegerField(verbose_name='x-rep')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("ego_name", models.CharField(max_length=50)),
+                ("ego_cog_apt", models.IntegerField(verbose_name="Cognition (COG)")),
+                ("ego_int_apt", models.IntegerField(verbose_name="Intuition (INT)")),
+                ("ego_ref_apt", models.IntegerField(verbose_name="Reflex (REF)")),
+                ("ego_sav_apt", models.IntegerField(verbose_name="Savy (SAV)")),
+                ("ego_som_apt", models.IntegerField(verbose_name="Somatics (SOM)")),
+                ("ego_wil_apt", models.IntegerField(verbose_name="Willpower (WIL)")),
+                ("ego_flex", models.IntegerField(verbose_name="Ego Flex Bonus")),
+                ("ego_a_rep", models.IntegerField(verbose_name="@-rep")),
+                ("ego_c_rep", models.IntegerField(verbose_name="c-rep")),
+                ("ego_f_rep", models.IntegerField(verbose_name="f-rep")),
+                ("ego_g_rep", models.IntegerField(verbose_name="g-rep")),
+                ("ego_i_rep", models.IntegerField(verbose_name="i-rep")),
+                ("ego_r_rep", models.IntegerField(verbose_name="r-rep")),
+                ("ego_x_rep", models.IntegerField(verbose_name="x-rep")),
             ],
         ),
         migrations.CreateModel(
-            name='Morph',
+            name="Morph",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('morph_name', models.CharField(max_length=50)),
-                ('morph_type', models.CharField(max_length=50)),
-                ('morph_cost', models.IntegerField()),
-                ('egos', models.ManyToManyField(to='character_generator.ego')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("morph_name", models.CharField(max_length=50)),
+                ("morph_type", models.CharField(max_length=50)),
+                ("morph_cost", models.IntegerField()),
+                ("egos", models.ManyToManyField(to="character_generator.ego")),
             ],
         ),
         migrations.CreateModel(
-            name='Item',
+            name="Item",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('item_name', models.CharField(max_length=100)),
-                ('item_complexity_gp', models.CharField(max_length=20)),
-                ('item_description', models.CharField(max_length=200)),
-                ('egos', models.ManyToManyField(to='character_generator.ego')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("item_name", models.CharField(max_length=100)),
+                ("item_complexity_gp", models.CharField(max_length=20)),
+                ("item_description", models.CharField(max_length=200)),
+                ("egos", models.ManyToManyField(to="character_generator.ego")),
             ],
         ),
         migrations.CreateModel(
-            name='Character_Sheet',
+            name="Character_Sheet",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('initiative', models.IntegerField(verbose_name='Initiative (INIT)')),
-                ('wound_threshold', models.IntegerField(verbose_name='Wound Threshold (WT)')),
-                ('durability', models.IntegerField(verbose_name='Durability (DUR)')),
-                ('death_rating', models.IntegerField(verbose_name='Death Rating (DR)')),
-                ('trauma_threshold', models.IntegerField(verbose_name='Trauma Threshold (TT)')),
-                ('lucidity', models.IntegerField(verbose_name='Lucidity (LUC)')),
-                ('insanity_rating', models.IntegerField(verbose_name='Insanity Rating (IR)')),
-                ('insight_pool', models.IntegerField()),
-                ('moxie_pool', models.IntegerField()),
-                ('vigor_pool', models.IntegerField()),
-                ('flex_pool', models.IntegerField()),
-                ('infection_rating', models.IntegerField(verbose_name='Infection Rating')),
-                ('ego', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='character_generator.ego')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("initiative", models.IntegerField(verbose_name="Initiative (INIT)")),
+                (
+                    "wound_threshold",
+                    models.IntegerField(verbose_name="Wound Threshold (WT)"),
+                ),
+                ("durability", models.IntegerField(verbose_name="Durability (DUR)")),
+                ("death_rating", models.IntegerField(verbose_name="Death Rating (DR)")),
+                (
+                    "trauma_threshold",
+                    models.IntegerField(verbose_name="Trauma Threshold (TT)"),
+                ),
+                ("lucidity", models.IntegerField(verbose_name="Lucidity (LUC)")),
+                (
+                    "insanity_rating",
+                    models.IntegerField(verbose_name="Insanity Rating (IR)"),
+                ),
+                ("insight_pool", models.IntegerField()),
+                ("moxie_pool", models.IntegerField()),
+                ("vigor_pool", models.IntegerField()),
+                ("flex_pool", models.IntegerField()),
+                (
+                    "infection_rating",
+                    models.IntegerField(verbose_name="Infection Rating"),
+                ),
+                (
+                    "ego",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="character_generator.ego",
+                    ),
+                ),
             ],
         ),
     ]
