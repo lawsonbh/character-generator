@@ -85,11 +85,10 @@ class Item(models.Model):
     name = models.CharField(max_length=100)
     COMMON_TECH = "Common Tech & Ware"
     MISSION_GEAR = "Mission Gear"
-    ITEM_TYPE_CHOICES = [
-        (COMMON_TECH, COMMON_TECH),
-        (MISSION_GEAR, MISSION_GEAR)
-    ]
-    itype = models.CharField("Item Type", max_length=30, choices=ITEM_TYPE_CHOICES,default=COMMON_TECH)
+    ITEM_TYPE_CHOICES = [(COMMON_TECH, COMMON_TECH), (MISSION_GEAR, MISSION_GEAR)]
+    itype = models.CharField(
+        "Item Type", max_length=30, choices=ITEM_TYPE_CHOICES, default=COMMON_TECH
+    )
     complexity_gp = models.CharField(max_length=20)
     desc = models.TextField("Description", default="")
 
@@ -145,10 +144,15 @@ class Career(models.Model):
     def __str__(self):
         return self.name
 
+
 class Career2Skills(models.Model):
-    career = models.ForeignKey(Career, related_name = 'career_to_skill', on_delete=models.CASCADE)
-    skills = models.ForeignKey(Skill, related_name='skill_to_career', on_delete=models.CASCADE)
+    career = models.ForeignKey(
+        Career, related_name="career_to_skill", on_delete=models.CASCADE
+    )
+    skills = models.ForeignKey(
+        Skill, related_name="skill_to_career", on_delete=models.CASCADE
+    )
     modifier = models.PositiveIntegerField(default=0)
 
     def __str__(self):
-        return (' '.join([str(self.career), str(self.skills), str(self.modifier)]))
+        return " ".join([str(self.career), str(self.skills), str(self.modifier)])
