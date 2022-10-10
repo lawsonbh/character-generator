@@ -4,7 +4,7 @@ from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.contrib import messages
-from .forms import EgoForm
+from .forms import EgoForm, CharacterSheetForm
 from .models import Ego, Morph
 from django.contrib.auth.decorators import login_required
 
@@ -37,7 +37,7 @@ def edit_ego(request, pk):
 
 @login_required
 def list_user_egos(request):
-    egos = Ego.objects.all()
+    egos = Ego.objects.filter(user=request.user).all()
     return render(request, "ego_list.html", {"egos": egos})
 
 
@@ -60,3 +60,18 @@ def list_morphs(request):
 
 def say_thanks(request):
     return render(request, "thanks.html")
+
+
+@login_required
+def create_character_sheet(request):
+    if request.method == "POST":
+        form = CharacterSheetForm(request.post)
+        form.ego.queryset = Ego.objects.filter(user=request.user)
+        if form.is_valid():
+            character_sheet = form.save(commit=False)
+            character_sheet.user = request.user
+            character_sheet.save()
+            return redirect("list_egos")
+    else:
+        form = CharacterSheetForm()
+    return render(request, "charactersheet.html", {"form": form})

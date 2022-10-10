@@ -9,4 +9,9 @@ urlpatterns = [
     path("<pk>/edit/", views.edit_ego, name="edit_ego"),
     path("<pk>/delete/", views.delete_ego, name="delete_ego"),
     path("list_morphs/", views.list_morphs, name="list_morphs"),
+    path(
+        "create_character_sheet/",
+        views.create_character_sheet,
+        name="create_character_sheet",
+    ),
 ]
