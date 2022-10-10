@@ -65,13 +65,12 @@ def say_thanks(request):
 @login_required
 def create_character_sheet(request):
     if request.method == "POST":
-        form = CharacterSheetForm(request.post)
-        form.ego.queryset = Ego.objects.filter(user=request.user)
+        form = CharacterSheetForm(request.POST, user=request.user)
         if form.is_valid():
             character_sheet = form.save(commit=False)
             character_sheet.user = request.user
             character_sheet.save()
             return redirect("list_egos")
     else:
-        form = CharacterSheetForm()
+        form = CharacterSheetForm(user=request.user)
     return render(request, "charactersheet.html", {"form": form})
