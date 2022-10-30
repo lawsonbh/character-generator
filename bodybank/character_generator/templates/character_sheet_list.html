@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}My character sheets{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <h1>My Character Sheets</h1>
+    <div class="module">
+      {% for character_sheet in character_sheets %}
+        <div class="character_sheet-info">
+          <h3>{{ character_sheet.ego }}</h3>
+          <p>
+            <a href="{% url "edit_character_sheet" character_sheet.id %}">Edit</a>
+            <a href="{% url "delete_character_sheet" character_sheet.id %}">Delete</a>
+          </p>
+        </div>
+      {% empty %}
+        <p>You haven't created any character sheets yet.</p>
+      {% endfor %}
+      <p>
+        <a href="{% url "create_character_sheet" %}" class="button">Create new character_sheet</a>
+      </p>
+    </div>
+  </div>
+{% endblock %}

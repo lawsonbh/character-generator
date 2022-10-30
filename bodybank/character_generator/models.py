@@ -1,3 +1,4 @@
+from ssl import OP_ENABLE_MIDDLEBOX_COMPAT
 from unicodedata import category
 from django.db import models
 from django.forms import ModelForm
@@ -156,3 +157,20 @@ class Career2Skills(models.Model):
 
     def __str__(self):
         return " ".join([str(self.career), str(self.skills), str(self.modifier)])
+
+
+class CharacterSheet(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    ego = models.ForeignKey(Ego, related_name="character_ego", on_delete=models.CASCADE)
+    morph = models.ForeignKey(
+        Morph, related_name="character_morph", on_delete=models.CASCADE
+    )
+    background = models.ForeignKey(
+        Background, related_name="character_background", on_delete=models.CASCADE
+    )
+    career = models.ForeignKey(
+        Career, related_name="character_career", on_delete=models.CASCADE
+    )
+
+    def __str__(self):
+        return " ".join([str(self.ego), str(self.morph)])
