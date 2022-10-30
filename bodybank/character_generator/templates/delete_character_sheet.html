@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Delete character_sheet{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <h1>Delete character sheet"{{ character_sheet.id }}"</h1>
+    <div class="module">
+      <form action="" method="post">
+        {% csrf_token %}
+        <p>Are you sure you want to delete "{{ character_sheet.id }}"?</p>
+        <input type="submit" class="btn btn-danger" value="Confirm">
+        <a href="{% url "list_character_sheets" %}" class="btn btn-light">Cancel</a>
+      </form>
+    </div>
+  </div>
+{% endblock %}

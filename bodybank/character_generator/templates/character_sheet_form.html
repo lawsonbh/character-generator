@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load bootstrap5 %}
+
+{% block title %}
+  {% if character_sheet %}
+    Edit character sheet "{{ character_sheet.id }}"
+  {% else %}
+    Create a new character sheet
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <h1>
+      {% if character_sheet %}
+        Edit character sheet "{{ character_sheet.id }}"
+      {% else %}
+        Create a new character_sheet
+      {% endif %}
+    </h1>
+    <div class="module">
+      <h2>Character sheet info</h2>
+      <form method="post">
+        {% bootstrap_form form %}
+        {% csrf_token %}
+        <p><input type="submit" value="Save character sheet"></p>
+      </form>
+    </div>
+  </div>
+{% endblock %}

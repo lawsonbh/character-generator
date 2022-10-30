@@ -5,7 +5,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.contrib import messages
 from .forms import EgoForm, CharacterSheetForm
-from .models import Ego, Morph
+from .models import Ego, Morph, CharacterSheet
 from django.contrib.auth.decorators import login_required
 
 
@@ -32,7 +32,7 @@ def edit_ego(request, pk):
         form.save()
         messages.success(request, "Updated Ego")
         return redirect("list_egos")
-    return render(request, "form.html", {"form": form})
+    return render(request, "ego_form.html", {"form": form})
 
 
 @login_required
@@ -50,7 +50,7 @@ def delete_ego(request, pk):
         messages.success(request, "Deleted Ego")
         return redirect("list_egos")
 
-    return render(request, "delete.html", {"ego": ego})
+    return render(request, "delete_ego.html", {"ego": ego})
 
 
 def list_morphs(request):
@@ -70,7 +70,40 @@ def create_character_sheet(request):
             character_sheet = form.save(commit=False)
             character_sheet.user = request.user
             character_sheet.save()
-            return redirect("list_egos")
+            return redirect("list_character_sheets")
     else:
         form = CharacterSheetForm(user=request.user)
-    return render(request, "charactersheet.html", {"form": form})
+    return render(request, "character_sheet.html", {"form": form})
+
+
+@login_required
+def edit_character_sheet(request, pk):
+    character_sheet = get_object_or_404(CharacterSheet, pk=pk)
+    form = CharacterSheetForm(request.POST or None, instance=character_sheet)
+    if form.is_valid():
+        form.save()
+        messages.success(request, "Updated Character Sheet")
+        return redirect("list_character_sheets")
+    return render(request, "character_sheet_form.html", {"form": form})
+
+
+@login_required
+def delete_character_sheet(request, pk):
+    character_sheet = get_object_or_404(CharacterSheet, pk=pk)
+
+    if request.method == "POST":
+        character_sheet.delete()
+        messages.success(request, "Deleted Character Sheet")
+        return redirect("list_character_sheets")
+
+    return render(
+        request, "delete_character_sheet.html", {"character_sheet": character_sheet}
+    )
+
+
+@login_required
+def list_user_character_sheets(request):
+    character_sheets = CharacterSheet.objects.filter(user=request.user).all()
+    return render(
+        request, "character_sheet_list.html", {"character_sheets": character_sheets}
+    )

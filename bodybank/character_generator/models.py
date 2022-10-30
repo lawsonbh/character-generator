@@ -171,3 +171,6 @@ class CharacterSheet(models.Model):
     career = models.ForeignKey(
         Career, related_name="character_career", on_delete=models.CASCADE
     )
+
+    def __str__(self):
+        return " ".join([str(self.ego), str(self.morph)])
